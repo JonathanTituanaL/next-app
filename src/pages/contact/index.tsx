@@ -1,18 +1,18 @@
+import Navbar from '@/componentes/Navbar'
+import Head from 'next/head'
 import React from 'react'
-import Head from 'next/head';
 import styles from '@/styles/Home.module.css';
 import Link from 'next/link';
-import Navbar from '@/componentes/Navbar';
 import { useRouter } from 'next/router';
 
-const about = () => {
-  const {asPath} = useRouter();
+const contact = () => {
+    const {asPath}= useRouter();
   return (
     <>
-      <Head>
-        <title>About Site</title>
-        <meta name="description" content="about page" />
-        <link rel="icon" href="/favicon.ico" />
+        <Head>
+            <title>Contact Site</title>
+            <meta name="description" content="contact page" />
+            <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navbar/>
       <main className={styles.main}>
@@ -30,4 +30,4 @@ const about = () => {
   )
 }
 
-export default about
+export default contact

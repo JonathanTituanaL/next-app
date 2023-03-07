@@ -6,9 +6,9 @@ import styles from './Navbar.module.css'
 const Navbar = () => {
   return (
     <nav className={styles['menu-container']}>
-        <ActiveLink text="text" href='/'/>
+        <ActiveLink text="Home" href='/'/>
         <ActiveLink text="About" href='/about'/>
-        <ActiveLink text="Contaxt" href='/contact'/>
+        <ActiveLink text="Contact" href='/contact'/>
     </nav>
   )
 }
