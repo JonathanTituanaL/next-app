@@ -1,32 +1,23 @@
-import Navbar from '@/componentes/Navbar'
-import Head from 'next/head'
+
 import React from 'react'
-import styles from '@/styles/Home.module.css';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import MainLayout from '@/componentes/layouts/MainLayout';
 
 const contact = () => {
     const {asPath}= useRouter();
   return (
-    <>
-        <Head>
-            <title>Contact Site</title>
-            <meta name="description" content="contact page" />
-            <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <Navbar/>
-      <main className={styles.main}>
-        <h1 className={styles.title}>
+    <MainLayout>
+        <h1 className="title">
           Ir a <Link href='/'>
             Home
           </Link>
         </h1>
-        <p className={styles.description}>
+        <p className="description">
           Get started by editing{' '}
-          <code className={styles.core}>pages{asPath}.jsx</code>
+          <code className="core">pages{asPath}.jsx</code>
         </p>
-      </main>
-    </>
+    </MainLayout>
   )
 }
 
