@@ -48,3 +48,4 @@ ENV PORT 3000
 CMD ["node", "server.js"]
 
 # entre 50 a 150 MB
+# docker run --name=project-lib -p 80:3000 project-lib
