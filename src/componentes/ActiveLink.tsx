@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { CSSProperties } from 'react'
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
@@ -7,9 +7,10 @@ type ActiveLinkProps = {
     href:string
 }
 
-const estilo ={//::se crea fuera para que no se cree en cada render
+const estilo: CSSProperties ={//::se crea fuera para que no se cree en cada render
     color:'#0070f3',
-    textDecoration: 'underline'
+    textDecoration: 'underline',
+
 }
 const ActiveLink = ({text,href}:ActiveLinkProps) => {
     const {asPath} = useRouter();

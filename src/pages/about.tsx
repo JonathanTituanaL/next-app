@@ -6,7 +6,7 @@ import { useRouter } from 'next/router';
 import MainLayout from '@/componentes/layouts/MainLayout';
 import DarkLayout from '../componentes/layouts/DarkLayout';
 
-const about = () => {
+const About = () => {
   const {asPath} = useRouter();
   return (
     <>
@@ -25,8 +25,8 @@ const about = () => {
   )
 }
 
-export default about;
-about.getLayout = function getLayout (page:JSX.Element|JSX.Element[]){
+export default About;
+About.getLayout = function getLayout (page:JSX.Element|JSX.Element[]){
 return (
   <MainLayout>
     <DarkLayout>

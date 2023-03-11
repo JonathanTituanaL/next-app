@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import MainLayout from '@/componentes/layouts/MainLayout';
 
-const contact = () => {
+const Contact = () => {
     const {asPath}= useRouter();
   return (
     <MainLayout>
@@ -21,4 +21,4 @@ const contact = () => {
   )
 }
 
-export default contact
+export default Contact
