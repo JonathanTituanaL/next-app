@@ -11,7 +11,6 @@ interface HomeProps {
 }
 
 const HomePage: NextPage<HomeProps> = ({pokemons}) =>{
-  console.log(pokemons)
   return (
     <Layout>
       <h1>Hola Mundo</h1>
