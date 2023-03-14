@@ -1,16 +1,29 @@
 import { Button, Card, Container, Grid, Image, Text } from '@nextui-org/react';
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
+import { useEffect, useState } from 'react';
 import { pokeApi } from '../../../api';
 import Layout from '../../../components/layout/Layout';
 import { Pokemon } from '../../../interfaces/pokemon-full';
+import { localFavourites } from '../../../utils';
 
 interface PageProps  {
     pokemon:Pokemon
 }
 
 const PokemonPage:NextPage <PageProps> = ({pokemon}) => {
+
+    const [isInFav,setIsInFav] = useState(false);
+
+    const onToggleFavourite = () =>{
+        localFavourites.toggleFavourite(pokemon.id);4
+        setIsInFav(!isInFav);
+    }
+    
+    useEffect(()=>{
+        setIsInFav(localFavourites.existInFavourites(pokemon.id));  
+    },[])
   return (
-    <Layout>
+    <Layout titulo={pokemon.name}>
         <Grid.Container
           css={{marginTop:'5px'}}
           gap={2}
@@ -34,7 +47,13 @@ const PokemonPage:NextPage <PageProps> = ({pokemon}) => {
                 <Card>
                     <Card.Header css={{display:'flex',justifyContent:'space-between'}}>
                       <Text h1 transform='capitalize'>{pokemon.name}</Text>
-                      <Button color='gradient' ghost>Guardar en favoritos</Button>
+                      <Button color='gradient' ghost={!isInFav} onPress={onToggleFavourite}>
+                        
+                        {
+                            isInFav ? 'En Favs':'Guardar en favoritos'
+                        }
+                          
+                      </Button>
                     </Card.Header>
                     <Card.Body>
                         <Text size={30}>Sprites:</Text>
