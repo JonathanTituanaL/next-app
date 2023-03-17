@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { pokeApi } from '../../../api';
 import Layout from '../../../components/layout/Layout';
 import { Pokemon } from '../../../interfaces/pokemon-full';
-import { localFavourites } from '../../../utils';
+import { getPokemonInfo, localFavourites } from '../../../utils';
 import confetti from 'canvas-confetti';
 
 interface PageProps  {
@@ -120,10 +120,10 @@ export const getStaticPaths:GetStaticPaths = async (ctx) =>{
 
 export const getStaticProps:GetStaticProps = async({params}) =>{
     const {id} = params as {id:string}//tipado abreviado
-    const {data} = await pokeApi.get<Pokemon>(`/pokemon/${id}`)
+ 
     return{
         props:{
-            pokemon:data//::estos objetos usan espacion en disco
+            pokemon:await getPokemonInfo(id)//::estos objetos usan espacion en disco
         }
     }
 }

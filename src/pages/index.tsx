@@ -12,9 +12,8 @@ interface HomeProps {
 
 const HomePage: NextPage<HomeProps> = ({pokemons}) =>{
   return (
-    <Layout>
-      <h1>Hola Mundo</h1>
-      
+    <Layout titulo="Listado de Pokemons">
+    
       <Grid.Container gap={2} justify='flex-start'>
         {
           pokemons.map((poke) =>{
