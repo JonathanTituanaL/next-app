@@ -114,16 +114,25 @@ export const getStaticPaths:GetStaticPaths = async (ctx) =>{
         paths:pokemons151.map(id=>({
             params:{id:id}
         })),
-        fallback:false //para paginas que no existen
+        //fallback:false //para paginas que no existen
+        fallback:'blocking'
     }
 }
 
 export const getStaticProps:GetStaticProps = async({params}) =>{
     const {id} = params as {id:string}//tipado abreviado
- 
+    const pokemon = await getPokemonInfo(id);
+    if(!pokemon){
+        return{
+            redirect:{
+                destination:'/',
+                permanent:false
+            }
+        }
+    }
     return{
         props:{
-            pokemon:await getPokemonInfo(id),//::estos objetos usan espacion en disco
+            pokemon,//::estos objetos usan espacion en disco
             revalidate:86400,//seconds (incremental static regeneration)
         }
     }
