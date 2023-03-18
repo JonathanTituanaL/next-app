@@ -123,7 +123,8 @@ export const getStaticProps:GetStaticProps = async({params}) =>{
  
     return{
         props:{
-            pokemon:await getPokemonInfo(id)//::estos objetos usan espacion en disco
+            pokemon:await getPokemonInfo(id),//::estos objetos usan espacion en disco
+            revalidate:86400,//seconds (incremental static regeneration)
         }
     }
 }
