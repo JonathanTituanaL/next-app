@@ -34,7 +34,7 @@ const PokemonByNamePage:NextPage <PageProps> = ({pokemon}) => {
     
     useEffect(()=>{
         setIsInFav(localFavourites.existInFavourites(pokemon.id));  
-    },[])
+    },[pokemon.id])
   return (
     <Layout titulo={pokemon.name}>
         <Grid.Container
@@ -111,21 +111,31 @@ export const getStaticPaths:GetStaticPaths = async (ctx) =>{
     
     const {data} = await pokeApi.get<PokemonListResponse>('/pokemon?limit=151');
     const {results} = data;
-    const names =results.map((pokemon) => (pokemon.name));
+    const names:string[] =results.map((pokemon) => (pokemon.name));
+
     return{
         paths:names.map(item=>({
             params:{name:item}
         })),
-        fallback:false //para paginas que no existen
+        //fallback:false //para paginas que no existen
+        fallback:'blocking'
     }
 }
 
 export const getStaticProps:GetStaticProps = async({params}) =>{
     const {name} = params as {name:string}//tipado abreviado
-    
+    const pokemon =  await getPokemonInfo(name);
+    if(!pokemon){
+        return{
+            redirect:{
+                destination:'/',
+                permanent:false
+            }
+        }
+    }
     return{
         props:{
-            pokemon: await getPokemonInfo(name)//::estos objetos usan espacio en disco
+            pokemon,//::estos objetos usan espacio en disco
         }
     }
 }

@@ -34,7 +34,7 @@ const PokemonPage:NextPage <PageProps> = ({pokemon}) => {
     
     useEffect(()=>{
         setIsInFav(localFavourites.existInFavourites(pokemon.id));  
-    },[])
+    },[pokemon.id])
   return (
     <Layout titulo={pokemon.name}>
         <Grid.Container

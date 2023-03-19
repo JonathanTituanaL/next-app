@@ -19,6 +19,7 @@ const NoFavourites = () => {
             width={400}
             height={400}
             css={{opacity:'0.3'}}
+            alt=""
           />
         </Container>
   )
